@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexandre Miller — Avocat Fiscaliste Nice | Droit Fiscal & Affaires</title>
+    <meta name="description" content="Me Alexandre Miller, avocat fiscaliste a Nice. Expertise en droit fiscal des particuliers et entreprises, controle fiscal, fiscalite internationale et droit des affaires.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        void: '#0A0A0A',
+                        slate_d: '#1E293B',
+                        neon: '#10B981',
+                        neon_dim: '#065F46',
+                        neon_glow: '#34D399',
+                        ice: '#F8FAFC',
+                    },
+                    fontFamily: {
+                        display: ['Space Grotesk', 'sans-serif'],
+                        body: ['DM Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* === DARK CINEMATIC BASE === */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #0A0A0A;
+            color: #F8FAFC;
+            overflow-x: hidden;
+        }
+
+        /* === CUSTOM SCROLLBAR === */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0A0A0A; }
+        ::-webkit-scrollbar-thumb { background: #10B981; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #34D399; }
+
+        /* === NEON GLOW EFFECTS === */
+        .neon-text {
+            text-shadow: 0 0 20px rgba(16, 185, 129, 0.3), 0 0 40px rgba(16, 185, 129, 0.1);
+        }
+        .neon-border {
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.15), inset 0 0 15px rgba(16, 185, 129, 0.05);
+        }
+        .neon-line {
+            background: linear-gradient(90deg, transparent, #10B981, transparent);
+            height: 1px;
+        }
+
+        /* === GRAIN OVERLAY === */
+        .grain-overlay::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* === SCANLINE EFFECT === */
+        .scanlines::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(16, 185, 129, 0.008) 2px,
+                rgba(16, 185, 129, 0.008) 4px
+            );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* === HERO ANIMATIONS === */
+        @keyframes titleReveal {
+            0% { clip-path: inset(0 100% 0 0); opacity: 0; }
+            100% { clip-path: inset(0 0% 0 0); opacity: 1; }
+        }
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+        @keyframes lineExpand {
+            0% { width: 0; }
+            100% { width: 100%; }
+        }
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInLeft {
+            0% { opacity: 0; transform: translateX(-40px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInRight {
+            0% { opacity: 0; transform: translateX(40px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes scaleIn {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+        @keyframes horizontalGlow {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        @keyframes cursorBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .hero-title {
+            animation: titleReveal 1.2s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+        }
+        .hero-title-delay {
+            animation: titleReveal 1.2s cubic-bezier(0.77, 0, 0.18, 1) 0.3s forwards;
+            opacity: 0;
+        }
+        .hero-sub {
+            animation: fadeInUp 0.8s ease-out 0.8s forwards;
+            opacity: 0;
+        }
+        .hero-cta {
+            animation: fadeInUp 0.8s ease-out 1.1s forwards;
+            opacity: 0;
+        }
+
+        /* === AMBIENT ORB === */
+        .ambient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.15;
+            animation: glowPulse 6s ease-in-out infinite;
+        }
+
+        /* === REVEAL ON SCROLL === */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-left { opacity: 0; transform: translateX(-40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-right { opacity: 0; transform: translateX(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-scale { opacity: 0; transform: scale(0.92); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.visible, .reveal-left.visible, .reveal-right.visible, .reveal-scale.visible {
+            opacity: 1; transform: translateY(0) translateX(0) scale(1);
+        }
+
+        /* === GLOWING CARD HOVER === */
+        .glow-card {
+            position: relative;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(10, 10, 10, 0.9));
+            border: 1px solid rgba(16, 185, 129, 0.1);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glow-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0), rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 0));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .glow-card:hover::before { opacity: 1; }
+        .glow-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.1), 0 0 30px rgba(16, 185, 129, 0.05);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        /* === HORIZONTAL GLOW BAR === */
+        .glow-bar {
+            background: linear-gradient(90deg, transparent 0%, #10B981 50%, transparent 100%);
+            background-size: 200% 100%;
+            animation: horizontalGlow 4s linear infinite;
+        }
+
+        /* === CTA BUTTON === */
+        .cta-primary {
+            position: relative;
+            background: #10B981;
+            color: #0A0A0A;
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+        .cta-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .cta-primary:hover::before { opacity: 1; }
+        .cta-primary:hover {
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.4), 0 0 60px rgba(16, 185, 129, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .cta-outline {
+            position: relative;
+            border: 1px solid rgba(16, 185, 129, 0.5);
+            color: #10B981;
+            transition: all 0.4s;
+        }
+        .cta-outline:hover {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: #10B981;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+        }
+
+        /* === FAQ ACCORDION === */
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s;
+        }
+        .faq-item.open .faq-content {
+            max-height: 500px;
+        }
+        .faq-icon {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+        .faq-item {
+            border-bottom: 1px solid rgba(16, 185, 129, 0.08);
+            transition: border-color 0.3s;
+        }
+        .faq-item:hover, .faq-item.open {
+            border-color: rgba(16, 185, 129, 0.25);
+        }
+
+        /* === NAVBAR === */
+        .navbar {
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 10, 0.8);
+            border-bottom: 1px solid rgba(16, 185, 129, 0.05);
+            transition: all 0.4s;
+        }
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom-color: rgba(16, 185, 129, 0.15);
+        }
+
+        /* === TYPING CURSOR === */
+        .typing-cursor::after {
+            content: '|';
+            color: #10B981;
+            animation: cursorBlink 1s infinite;
+            margin-left: 2px;
+        }
+
+        /* === MOBILE MENU === */
+        .mobile-menu {
+            clip-path: circle(0% at calc(100% - 2rem) 2rem);
+            transition: clip-path 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mobile-menu.open {
+            clip-path: circle(150% at calc(100% - 2rem) 2rem);
+        }
+
+        /* === PROGRESS BAR === */
+        #progressBar {
+            position: fixed;
+            top: 0; left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #10B981, #34D399);
+            z-index: 9999;
+            transition: width 0.1s;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+
+        /* === SECTION DIVIDER === */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.2), transparent);
+        }
+
+        /* === STAGGER CHILDREN === */
+        .stagger-children > * {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .stagger-children.visible > *:nth-child(1) { animation: fadeInUp 0.6s ease-out 0.0s forwards; }
+        .stagger-children.visible > *:nth-child(2) { animation: fadeInUp 0.6s ease-out 0.1s forwards; }
+        .stagger-children.visible > *:nth-child(3) { animation: fadeInUp 0.6s ease-out 0.2s forwards; }
+        .stagger-children.visible > *:nth-child(4) { animation: fadeInUp 0.6s ease-out 0.3s forwards; }
+        .stagger-children.visible > *:nth-child(5) { animation: fadeInUp 0.6s ease-out 0.4s forwards; }
+        .stagger-children.visible > *:nth-child(6) { animation: fadeInUp 0.6s ease-out 0.5s forwards; }
+
+        /* === TESTIMONIAL QUOTE MARK === */
+        .quote-mark {
+            font-size: 8rem;
+            line-height: 1;
+            color: rgba(16, 185, 129, 0.1);
+            font-family: 'Georgia', serif;
+            position: absolute;
+            top: -1rem;
+            left: -0.5rem;
+        }
+
+        /* === EXPERTISE ICON GLOW === */
+        .icon-glow {
+            width: 56px; height: 56px;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            border-radius: 12px;
+            transition: all 0.4s;
+        }
+        .glow-card:hover .icon-glow {
+            background: rgba(16, 185, 129, 0.15);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+    </style>
+</head>
+<body class="grain-overlay scanlines">
+
+    <!-- Progress Bar -->
+    <div id="progressBar" style="width: 0%;"></div>
+
+    <!-- ============================== -->
+    <!-- NAVIGATION -->
+    <!-- ============================== -->
+    <nav class="navbar fixed w-full top-0 z-50 px-4 sm:px-6">
+        <div class="max-w-6xl mx-auto flex items-center justify-between h-16 sm:h-20">
+            <a href="#" class="font-display font-bold text-lg sm:text-xl tracking-tight">
+                <span class="text-neon">M</span>iller <span class="text-white/40 font-light">Avocat</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#expertises" class="font-body text-sm text-white/60 hover:text-neon transition-colors duration-300">Expertises</a>
+                <a href="#cabinet" class="font-body text-sm text-white/60 hover:text-neon transition-colors duration-300">Le Cabinet</a>
+                <a href="#temoignages" class="font-body text-sm text-white/60 hover:text-neon transition-colors duration-300">Avis Clients</a>
+                <a href="#faq" class="font-body text-sm text-white/60 hover:text-neon transition-colors duration-300">FAQ</a>
+                <a href="#contact" class="cta-primary font-display font-medium text-sm px-5 py-2.5 rounded-lg">Prendre rendez-vous</a>
+            </div>
+            <button id="menuToggle" class="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 relative z-[60]">
+                <span class="w-6 h-px bg-white transition-all duration-300" id="bar1"></span>
+                <span class="w-6 h-px bg-white transition-all duration-300" id="bar2"></span>
+                <span class="w-4 h-px bg-neon transition-all duration-300" id="bar3"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-0 z-[55] bg-void/98 flex flex-col items-center justify-center gap-8">
+        <a href="#expertises" class="font-display text-2xl text-white/80 hover:text-neon transition-colors mob-link">Expertises</a>
+        <a href="#cabinet" class="font-display text-2xl text-white/80 hover:text-neon transition-colors mob-link">Le Cabinet</a>
+        <a href="#temoignages" class="font-display text-2xl text-white/80 hover:text-neon transition-colors mob-link">Avis Clients</a>
+        <a href="#faq" class="font-display text-2xl text-white/80 hover:text-neon transition-colors mob-link">FAQ</a>
+        <a href="#contact" class="cta-primary font-display font-medium text-lg px-8 py-3 rounded-lg mob-link">Prendre rendez-vous</a>
+        <div class="mt-6 text-white/30 text-sm">
+            <a href="tel:0628564813" class="hover:text-neon transition-colors">06 28 56 48 13</a>
+        </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- HERO — DARK CINEMATIC -->
+    <!-- ============================== -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Ambient Orbs -->
+        <div class="ambient-orb w-[500px] h-[500px] bg-neon top-[-10%] right-[-10%]" style="animation-delay: 0s;"></div>
+        <div class="ambient-orb w-[300px] h-[300px] bg-neon_dim bottom-[10%] left-[-5%]" style="animation-delay: 3s;"></div>
+
+        <!-- Grid Pattern Background -->
+        <div class="absolute inset-0" style="background-image: linear-gradient(rgba(16,185,129,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.03) 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-24 pb-16 text-center">
+            <!-- Overline -->
+            <div class="hero-sub mb-6">
+                <span class="inline-flex items-center gap-2 font-body text-xs sm:text-sm tracking-[0.2em] uppercase text-neon/80">
+                    <span class="w-8 h-px bg-neon/50"></span>
+                    Barreau de Nice
+                    <span class="w-8 h-px bg-neon/50"></span>
+                </span>
+            </div>
+
+            <!-- Titre principal geant -->
+            <h1 class="font-display font-bold leading-[0.9] tracking-tighter mb-2">
+                <span class="hero-title block text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] text-white">Alexandre</span>
+                <span class="hero-title-delay block text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] neon-text text-neon">Miller</span>
+            </h1>
+
+            <!-- Tagline -->
+            <div class="hero-sub mt-6 sm:mt-8">
+                <p class="font-display text-lg sm:text-xl md:text-2xl text-white/50 font-light tracking-wide">
+                    Avocat Fiscaliste <span class="text-neon/70">/</span> Droit des Affaires
+                </p>
+            </div>
+
+            <!-- Separator -->
+            <div class="hero-sub mt-8 flex justify-center">
+                <div class="neon-line w-32" style="animation: lineExpand 1.5s ease-out 1.2s forwards; width: 0;"></div>
+            </div>
+
+            <!-- Description -->
+            <div class="hero-sub mt-8 max-w-2xl mx-auto">
+                <p class="font-body text-base sm:text-lg text-white/40 leading-relaxed">
+                    Une expertise fiscale forgee entre Paris et Nice. Conseil strategique, contentieux fiscal et droit des affaires au service de vos interets.
+                </p>
+            </div>
+
+            <!-- CTAs -->
+            <div class="hero-cta mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#contact" class="cta-primary font-display font-semibold text-sm sm:text-base px-8 py-3.5 rounded-lg">
+                    Prendre rendez-vous
+                </a>
+                <a href="tel:0628564813" class="cta-outline font-display font-medium text-sm sm:text-base px-8 py-3.5 rounded-lg">
+                    06 28 56 48 13
+                </a>
+            </div>
+
+            <!-- Stats bar -->
+            <div class="hero-cta mt-16 sm:mt-20 grid grid-cols-3 gap-6 sm:gap-12 max-w-xl mx-auto">
+                <div class="text-center">
+                    <div class="font-display text-2xl sm:text-3xl font-bold text-white">15<span class="text-neon">+</span></div>
+                    <div class="font-body text-xs sm:text-sm text-white/30 mt-1">Annees d'exercice</div>
+                </div>
+                <div class="text-center">
+                    <div class="font-display text-2xl sm:text-3xl font-bold text-white">Nice<span class="text-neon"> &</span></div>
+                    <div class="font-body text-xs sm:text-sm text-white/30 mt-1">Paris & Monaco</div>
+                </div>
+                <div class="text-center">
+                    <div class="font-display text-2xl sm:text-3xl font-bold text-white">100<span class="text-neon">%</span></div>
+                    <div class="font-body text-xs sm:text-sm text-white/30 mt-1">Dedie au fiscal</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 hero-cta">
+            <span class="font-body text-[10px] tracking-[0.3em] uppercase text-white/20">Scroll</span>
+            <div class="w-px h-12 relative overflow-hidden">
+                <div class="w-full h-full bg-gradient-to-b from-neon to-transparent animate-bounce"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Glow Bar Divider -->
+    <div class="glow-bar h-px w-full"></div>
+
+    <!-- ============================== -->
+    <!-- EXPERTISES GRID -->
+    <!-- ============================== -->
+    <section id="expertises" class="py-20 sm:py-28 relative">
+        <!-- Ambient -->
+        <div class="ambient-orb w-[400px] h-[400px] bg-neon_dim top-[20%] left-[-15%]" style="animation-delay: 2s;"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <!-- Section Header -->
+            <div class="reveal mb-16 sm:mb-20">
+                <div class="flex items-center gap-4 mb-4">
+                    <span class="font-display text-xs tracking-[0.3em] uppercase text-neon/60">01</span>
+                    <div class="h-px flex-1 bg-gradient-to-r from-neon/20 to-transparent"></div>
+                </div>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
+                    Domaines <span class="text-neon neon-text">d'expertise</span>
+                </h2>
+                <p class="font-body text-white/40 mt-4 max-w-xl text-base sm:text-lg">
+                    Une maitrise approfondie du droit fiscal et des affaires, au service des particuliers comme des entreprises.
+                </p>
+            </div>
+
+            <!-- Grid 3x2 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 stagger-children">
+
+                <!-- Card 1 — Fiscal Particuliers -->
+                <div class="glow-card rounded-2xl p-7 sm:p-8">
+                    <div class="icon-glow mb-5">
+                        <svg class="w-6 h-6 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-lg sm:text-xl font-semibold mb-3">Droit Fiscal des Particuliers</h3>
+                    <p class="font-body text-sm text-white/40 leading-relaxed">Conseil fiscal personnalise, optimisation patrimoniale, declarations complexes et accompagnement face a l'administration fiscale. Decisions eclairees, risques maitrises.</p>
+                </div>
+
+                <!-- Card 2 — Fiscal Entreprises -->
+                <div class="glow-card rounded-2xl p-7 sm:p-8">
+                    <div class="icon-glow mb-5">
+                        <svg class="w-6 h-6 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5M3.75 3v18h16.5V3H3.75zm3 3.75h3v3h-3v-3zm6 0h3v3h-3v-3zm-6 6h3v3h-3v-3zm6 0h3v3h-3v-3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-lg sm:text-xl font-semibold mb-3">Droit Fiscal des Entreprises</h3>
+                    <p class="font-body text-sm text-white/40 leading-relaxed">Structuration fiscale, choix du regime, conformite et optimisation. Une approche strategique pour accompagner les entreprises dans la complexite fiscale.</p>
+                </div>
+
+                <!-- Card 3 — Controle Fiscal -->
+                <div class="glow-card rounded-2xl p-7 sm:p-8">
+                    <div class="icon-glow mb-5">
+                        <svg class="w-6 h-6 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-lg sm:text-xl font-semibold mb-3">Controle Fiscal</h3>
+                    <p class="font-body text-sm text-white/40 leading-relaxed">Defense de vos droits face aux operations de controle. Preparation, assistance pendant la procedure et negociation avec l'administration fiscale.</p>
+                </div>
+
+                <!-- Card 4 — Fiscalite Internationale -->
+                <div class="glow-card rounded-2xl p-7 sm:p-8">
+                    <div class="icon-glow mb-5">
+                        <svg class="w-6 h-6 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-lg sm:text-xl font-semibold mb-3">Fiscalite Internationale</h3>
+                    <p class="font-body text-sm text-white/40 leading-relaxed">Conventions fiscales, prix de transfert, regularisation de comptes etrangers. Navigation experte dans les mecanismes fiscaux transfrontaliers.</p>
+                </div>
+
+                <!-- Card 5 — Droit des Affaires -->
+                <div class="glow-card rounded-2xl p-7 sm:p-8">
+                    <div class="icon-glow mb-5">
+                        <svg class="w-6 h-6 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-lg sm:text-xl font-semibold mb-3">Droit des Affaires</h3>
+                    <p class="font-body text-sm text-white/40 leading-relaxed">Creation de societes, operations juridiques, suivi juridique permanent. Un accompagnement complet pour la vie juridique de votre entreprise.</p>
+                </div>
+
+                <!-- Card 6 — Conseil Strategique -->
+                <div class="glow-card rounded-2xl p-7 sm:p-8">
+                    <div class="icon-glow mb-5">
+                        <svg class="w-6 h-6 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-lg sm:text-xl font-semibold mb-3">Conseil Strategique</h3>
+                    <p class="font-body text-sm text-white/40 leading-relaxed">Analyse fiscale approfondie et strategies sur mesure. Convergence de vos objectifs patrimoniaux et professionnels dans un cadre fiscal optimise.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-4xl mx-auto"></div>
+
+    <!-- ============================== -->
+    <!-- A PROPOS / LE CABINET -->
+    <!-- ============================== -->
+    <section id="cabinet" class="py-20 sm:py-28 relative">
+        <div class="ambient-orb w-[350px] h-[350px] bg-neon bottom-[5%] right-[-10%]" style="animation-delay: 1s;"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <!-- Section Header -->
+            <div class="reveal mb-16">
+                <div class="flex items-center gap-4 mb-4">
+                    <span class="font-display text-xs tracking-[0.3em] uppercase text-neon/60">02</span>
+                    <div class="h-px flex-1 bg-gradient-to-r from-neon/20 to-transparent"></div>
+                </div>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
+                    Le <span class="text-neon neon-text">Cabinet</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-start">
+                <!-- Left Column — Portrait & Identity -->
+                <div class="lg:col-span-2 reveal-left">
+                    <div class="relative">
+                        <!-- Portrait placeholder with cinematic frame -->
+                        <div class="aspect-[3/4] rounded-2xl overflow-hidden relative neon-border">
+                            <div class="absolute inset-0 bg-gradient-to-br from-slate_d to-void flex items-center justify-center">
+                                <div class="text-center">
+                                    <div class="font-display text-6xl sm:text-7xl font-bold text-neon/20">AM</div>
+                                    <div class="mt-3 font-body text-xs tracking-[0.2em] uppercase text-white/20">Alexandre Miller</div>
+                                </div>
+                            </div>
+                            <!-- Cinematic bars -->
+                            <div class="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-void to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-void to-transparent"></div>
+                        </div>
+                        <!-- Info card below portrait -->
+                        <div class="mt-5 glow-card rounded-xl p-5">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-2 h-2 rounded-full bg-neon animate-pulse"></div>
+                                <span class="font-display text-sm font-medium text-white/70">Disponible pour consultation</span>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex items-center gap-2 text-white/40 text-sm font-body">
+                                    <svg class="w-4 h-4 text-neon/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 0115 0z"/>
+                                    </svg>
+                                    34 bd Gambetta, 06000 Nice
+                                </div>
+                                <div class="flex items-center gap-2 text-white/40 text-sm font-body">
+                                    <svg class="w-4 h-4 text-neon/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
+                                    </svg>
+                                    <a href="tel:0628564813" class="hover:text-neon transition-colors">06 28 56 48 13</a>
+                                </div>
+                                <div class="flex items-center gap-2 text-white/40 text-sm font-body">
+                                    <svg class="w-4 h-4 text-neon/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
+                                    </svg>
+                                    <a href="mailto:contact@milleravocat.fr" class="hover:text-neon transition-colors">contact@milleravocat.fr</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column — Content -->
+                <div class="lg:col-span-3 reveal-right">
+                    <div class="space-y-6">
+                        <p class="font-body text-base sm:text-lg text-white/60 leading-relaxed">
+                            <span class="text-white font-medium">Me Alexandre Miller</span> a forge son expertise entre <span class="text-neon/80">Paris</span> et <span class="text-neon/80">Nice</span>, developpant une maitrise approfondie du droit fiscal qui constitue le coeur de son activite. Sa nature engagee se traduit par un accompagnement personnalise, visant a epauler chaque client au plus proche de ses besoins.
+                        </p>
+                        <p class="font-body text-base sm:text-lg text-white/60 leading-relaxed">
+                            Lorsque vous consulterez Maitre Miller, vous serez ecoutes et consideres. Le climat de confiance instaure sera benefique au travail realise a votre profit. Pour lui, la relation entre le client et l'avocat est une <span class="text-white font-medium">veritable alliance</span> dont l'objectif principal est d'agir au mieux de vos interets.
+                        </p>
+                        <p class="font-body text-base sm:text-lg text-white/60 leading-relaxed">
+                            Grace a une analyse fiscale approfondie, le cabinet concoit des <span class="text-neon/80">strategies adaptees</span> a vos besoins qui feront converger vos differents objectifs — qu'il s'agisse de fiscalite personnelle, d'entreprise ou de problematiques internationales.
+                        </p>
+                    </div>
+
+                    <!-- Values / Pillars -->
+                    <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="glow-card rounded-xl p-5 text-center">
+                            <div class="font-display text-2xl font-bold text-neon mb-2">Ecoute</div>
+                            <p class="font-body text-xs text-white/35">Comprendre avant de conseiller. Chaque situation est unique.</p>
+                        </div>
+                        <div class="glow-card rounded-xl p-5 text-center">
+                            <div class="font-display text-2xl font-bold text-neon mb-2">Rigueur</div>
+                            <p class="font-body text-xs text-white/35">Analyse approfondie et strategies fiscales sans approximation.</p>
+                        </div>
+                        <div class="glow-card rounded-xl p-5 text-center">
+                            <div class="font-display text-2xl font-bold text-neon mb-2">Alliance</div>
+                            <p class="font-body text-xs text-white/35">Une relation de confiance au service de vos interets.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-4xl mx-auto"></div>
+
+    <!-- ============================== -->
+    <!-- TEMOIGNAGES -->
+    <!-- ============================== -->
+    <section id="temoignages" class="py-20 sm:py-28 relative">
+        <div class="ambient-orb w-[300px] h-[300px] bg-neon top-[30%] right-[5%]" style="animation-delay: 4s;"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <!-- Section Header -->
+            <div class="reveal mb-16 sm:mb-20">
+                <div class="flex items-center gap-4 mb-4">
+                    <span class="font-display text-xs tracking-[0.3em] uppercase text-neon/60">03</span>
+                    <div class="h-px flex-1 bg-gradient-to-r from-neon/20 to-transparent"></div>
+                </div>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
+                    Ils nous ont fait <span class="text-neon neon-text">confiance</span>
+                </h2>
+            </div>
+
+            <!-- Testimonials Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                <!-- Testimonial 1 — Large featured -->
+                <div class="lg:col-span-2 reveal-left">
+                    <div class="glow-card rounded-2xl p-8 sm:p-10 relative h-full">
+                        <div class="quote-mark">"</div>
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-1 mb-5">
+                                <svg class="w-4 h-4 text-neon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg class="w-4 h-4 text-neon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg class="w-4 h-4 text-neon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg class="w-4 h-4 text-neon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg class="w-4 h-4 text-neon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </div>
+                            <blockquote class="font-body text-base sm:text-lg text-white/70 leading-relaxed mb-6">
+                                Maitre Miller a su nous accompagner avec une rigueur et une clarte remarquables lors d'un controle fiscal particulierement complexe. Son expertise en fiscalite internationale a ete determinante pour la resolution favorable de notre dossier. Un avocat qui allie competence technique et veritable ecoute.
+                            </blockquote>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-neon/10 border border-neon/20 flex items-center justify-center">
+                                    <span class="font-display text-sm font-bold text-neon">PD</span>
+                                </div>
+                                <div>
+                                    <div class="font-display text-sm font-semibold text-white/90">Philippe D.</div>
+                                    <div class="font-body text-xs text-white/35">Dirigeant de societe — Nice</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 — Right stacked -->
+                <div class="reveal-right">
+                    <div class="glow-card rounded-2xl p-7 relative h-full">
+                        <div class="quote-mark" style="font-size: 5rem;">"</div>
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-1 mb-4">
+                                <svg class="w-3.5 h-3.5 text-neon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg class="w-3.5 h-3.5 text-neon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg class="w-3.5 h-3.5 text-neon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg class="w-3.5 h-3.5 text-neon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg class="w-3.5 h-3.5 text-neon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </div>
+                            <blockquote class="font-body text-sm text-white/60 leading-relaxed mb-5">
+                                Un accompagnement fiscal exceptionnel pour la creation de ma societe. Me Miller a optimise la structure juridique et fiscale avec une precision rare. Je le recommande sans reserve.
+                            </blockquote>
+                            <div class="flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-full bg-neon/10 border border-neon/20 flex items-center justify-center">
+                                    <span class="font-display text-xs font-bold text-neon">SL</span>
+                                </div>
+                                <div>
+                                    <div class="font-display text-sm font-semibold text-white/90">Sophie L.</div>
+                                    <div class="font-body text-xs text-white/35">Entrepreneure — Monaco</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 — Full width bar -->
+                <div class="lg:col-span-3 reveal">
+                    <div class="glow-card rounded-2xl p-7 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                        <div class="flex-shrink-0">
+                            <div class="w-14 h-14 rounded-full bg-neon/10 border border-neon/20 flex items-center justify-center">
+                                <span class="font-display text-lg font-bold text-neon">MR</span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-1 mb-3">
+                                <svg class="w-3.5 h-3.5 text-neon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg class="w-3.5 h-3.5 text-neon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg class="w-3.5 h-3.5 text-neon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg class="w-3.5 h-3.5 text-neon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg class="w-3.5 h-3.5 text-neon/40" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </div>
+                            <blockquote class="font-body text-sm sm:text-base text-white/60 leading-relaxed">
+                                Face a une regularisation de comptes etrangers, Maitre Miller a fait preuve d'un professionnalisme exemplaire. Chaque etape a ete expliquee clairement, les echanges avec l'administration ont ete menes avec expertise. Un resultat bien au-dela de mes attentes.
+                            </blockquote>
+                        </div>
+                        <div class="flex-shrink-0 text-right">
+                            <div class="font-display text-sm font-semibold text-white/90">Marc R.</div>
+                            <div class="font-body text-xs text-white/35">Expatrie — Retour en France</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-4xl mx-auto"></div>
+
+    <!-- ============================== -->
+    <!-- FAQ -->
+    <!-- ============================== -->
+    <section id="faq" class="py-20 sm:py-28 relative">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6">
+            <!-- Section Header -->
+            <div class="reveal mb-14">
+                <div class="flex items-center gap-4 mb-4">
+                    <span class="font-display text-xs tracking-[0.3em] uppercase text-neon/60">04</span>
+                    <div class="h-px flex-1 bg-gradient-to-r from-neon/20 to-transparent"></div>
+                </div>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
+                    Questions <span class="text-neon neon-text">frequentes</span>
+                </h2>
+                <p class="font-body text-white/40 mt-4 text-base">
+                    Les reponses aux interrogations les plus courantes concernant notre accompagnement.
+                </p>
+            </div>
+
+            <!-- FAQ Items -->
+            <div class="space-y-0 reveal">
+
+                <!-- FAQ 1 -->
+                <div class="faq-item py-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex items-center justify-between gap-4">
+                        <h3 class="font-display text-base sm:text-lg font-medium text-white/80 pr-4">Quels types de problematiques fiscales traitez-vous ?</h3>
+                        <div class="faq-icon flex-shrink-0 w-8 h-8 rounded-lg bg-neon/10 border border-neon/15 flex items-center justify-center">
+                            <svg class="w-4 h-4 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <p class="font-body text-sm text-white/45 leading-relaxed pt-4 pb-2">
+                            Le cabinet intervient sur l'ensemble du spectre fiscal : conseil et optimisation pour les particuliers, structuration fiscale des entreprises, accompagnement lors de controles fiscaux, fiscalite internationale, regularisation de comptes etrangers, et contentieux devant les juridictions administratives. Chaque dossier beneficie d'une analyse approfondie et d'une strategie sur mesure.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item py-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex items-center justify-between gap-4">
+                        <h3 class="font-display text-base sm:text-lg font-medium text-white/80 pr-4">Comment se deroule une premiere consultation ?</h3>
+                        <div class="faq-icon flex-shrink-0 w-8 h-8 rounded-lg bg-neon/10 border border-neon/15 flex items-center justify-center">
+                            <svg class="w-4 h-4 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <p class="font-body text-sm text-white/45 leading-relaxed pt-4 pb-2">
+                            La premiere consultation permet d'analyser votre situation, d'identifier les enjeux fiscaux et de definir une strategie adaptee. Elle se deroule au cabinet ou en visioconference. Apportez vos documents fiscaux pertinents — avis d'imposition, courriers de l'administration, statuts de societe — pour que nous puissions etablir un diagnostic complet des votre premiere visite.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item py-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex items-center justify-between gap-4">
+                        <h3 class="font-display text-base sm:text-lg font-medium text-white/80 pr-4">Intervenez-vous en dehors de Nice et des Alpes-Maritimes ?</h3>
+                        <div class="faq-icon flex-shrink-0 w-8 h-8 rounded-lg bg-neon/10 border border-neon/15 flex items-center justify-center">
+                            <svg class="w-4 h-4 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <p class="font-body text-sm text-white/45 leading-relaxed pt-4 pb-2">
+                            Oui, le cabinet intervient sur l'ensemble du territoire national et a l'international. Fort de son experience entre Paris et Nice, Me Miller traite des dossiers impliquant des enjeux transfrontaliers, notamment avec Monaco. Les consultations peuvent s'effectuer en visioconference pour les clients eloignes geographiquement.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-item py-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex items-center justify-between gap-4">
+                        <h3 class="font-display text-base sm:text-lg font-medium text-white/80 pr-4">Comment sont determines vos honoraires ?</h3>
+                        <div class="faq-icon flex-shrink-0 w-8 h-8 rounded-lg bg-neon/10 border border-neon/15 flex items-center justify-center">
+                            <svg class="w-4 h-4 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <p class="font-body text-sm text-white/45 leading-relaxed pt-4 pb-2">
+                            Les honoraires sont fixes de maniere transparente selon la nature et la complexite du dossier. Plusieurs modes de facturation sont proposes : taux horaire, forfait ou honoraire de resultat selon les cas. Une convention d'honoraires detaillee vous est systematiquement remise avant tout engagement, sans surprise. Un devis precis est etabli des la premiere consultation.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="faq-item py-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex items-center justify-between gap-4">
+                        <h3 class="font-display text-base sm:text-lg font-medium text-white/80 pr-4">Que faire en cas de reception d'un avis de controle fiscal ?</h3>
+                        <div class="faq-icon flex-shrink-0 w-8 h-8 rounded-lg bg-neon/10 border border-neon/15 flex items-center justify-center">
+                            <svg class="w-4 h-4 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <p class="font-body text-sm text-white/45 leading-relaxed pt-4 pb-2">
+                            Contactez immediatement le cabinet. La reception d'un avis de verification marque le debut de delais reglementaires qu'il convient de respecter scrupuleusement. Me Miller vous assistera a chaque etape : preparation des documents, presence lors des operations de controle, redaction des reponses aux propositions de rectification, et negociation avec l'inspecteur. Plus l'intervention est precoce, plus les chances d'un resultat favorable sont elevees.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-4xl mx-auto"></div>
+
+    <!-- ============================== -->
+    <!-- CONTACT -->
+    <!-- ============================== -->
+    <section id="contact" class="py-20 sm:py-28 relative">
+        <div class="ambient-orb w-[400px] h-[400px] bg-neon_dim top-[10%] left-[50%] -translate-x-1/2" style="animation-delay: 2s;"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <!-- Section Header -->
+            <div class="reveal mb-14">
+                <div class="flex items-center gap-4 mb-4">
+                    <span class="font-display text-xs tracking-[0.3em] uppercase text-neon/60">05</span>
+                    <div class="h-px flex-1 bg-gradient-to-r from-neon/20 to-transparent"></div>
+                </div>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
+                    Prendre <span class="text-neon neon-text">contact</span>
+                </h2>
+                <p class="font-body text-white/40 mt-4 max-w-xl text-base">
+                    Une question fiscale ? Un besoin d'accompagnement ? Contactez le cabinet pour un premier echange.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-14">
+
+                <!-- Left — Contact Info -->
+                <div class="lg:col-span-2 reveal-left">
+                    <div class="space-y-6">
+
+                        <!-- Phone -->
+                        <div class="glow-card rounded-xl p-5 flex items-center gap-4">
+                            <div class="icon-glow flex-shrink-0">
+                                <svg class="w-5 h-5 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-display text-sm font-medium text-white/50 mb-1">Telephone</div>
+                                <a href="tel:0628564813" class="font-display text-lg font-semibold text-white hover:text-neon transition-colors">06 28 56 48 13</a>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="glow-card rounded-xl p-5 flex items-center gap-4">
+                            <div class="icon-glow flex-shrink-0">
+                                <svg class="w-5 h-5 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-display text-sm font-medium text-white/50 mb-1">Email</div>
+                                <a href="mailto:contact@milleravocat.fr" class="font-display text-base font-semibold text-white hover:text-neon transition-colors">contact@milleravocat.fr</a>
+                            </div>
+                        </div>
+
+                        <!-- Address -->
+                        <div class="glow-card rounded-xl p-5 flex items-start gap-4">
+                            <div class="icon-glow flex-shrink-0 mt-0.5">
+                                <svg class="w-5 h-5 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 0115 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-display text-sm font-medium text-white/50 mb-1">Adresse</div>
+                                <div class="font-body text-white/70 text-sm leading-relaxed">
+                                    34 boulevard Gambetta<br>
+                                    06000 Nice
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hours -->
+                        <div class="glow-card rounded-xl p-5 flex items-start gap-4">
+                            <div class="icon-glow flex-shrink-0 mt-0.5">
+                                <svg class="w-5 h-5 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-display text-sm font-medium text-white/50 mb-1">Horaires</div>
+                                <div class="font-body text-white/70 text-sm leading-relaxed">
+                                    Lundi — Vendredi<br>
+                                    9h00 — 19h00
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Right — Contact Form -->
+                <div class="lg:col-span-3 reveal-right">
+                    <form id="contactForm" class="glow-card rounded-2xl p-7 sm:p-9" onsubmit="handleSubmit(event)">
+                        <h3 class="font-display text-xl font-semibold mb-6">Demande de rendez-vous</h3>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+                            <div>
+                                <label class="block font-body text-xs text-white/40 mb-2 tracking-wide uppercase">Nom</label>
+                                <input type="text" name="nom" required placeholder="Votre nom" class="w-full bg-void border border-white/10 rounded-lg px-4 py-3 font-body text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-neon/50 focus:ring-1 focus:ring-neon/20 transition-all">
+                            </div>
+                            <div>
+                                <label class="block font-body text-xs text-white/40 mb-2 tracking-wide uppercase">Prenom</label>
+                                <input type="text" name="prenom" required placeholder="Votre prenom" class="w-full bg-void border border-white/10 rounded-lg px-4 py-3 font-body text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-neon/50 focus:ring-1 focus:ring-neon/20 transition-all">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+                            <div>
+                                <label class="block font-body text-xs text-white/40 mb-2 tracking-wide uppercase">Email</label>
+                                <input type="email" name="email" required placeholder="votre@email.fr" class="w-full bg-void border border-white/10 rounded-lg px-4 py-3 font-body text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-neon/50 focus:ring-1 focus:ring-neon/20 transition-all">
+                            </div>
+                            <div>
+                                <label class="block font-body text-xs text-white/40 mb-2 tracking-wide uppercase">Telephone</label>
+                                <input type="tel" name="tel" placeholder="06 00 00 00 00" class="w-full bg-void border border-white/10 rounded-lg px-4 py-3 font-body text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-neon/50 focus:ring-1 focus:ring-neon/20 transition-all">
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+                            <label class="block font-body text-xs text-white/40 mb-2 tracking-wide uppercase">Objet de votre demande</label>
+                            <select name="objet" required class="w-full bg-void border border-white/10 rounded-lg px-4 py-3 font-body text-sm text-white/60 focus:outline-none focus:border-neon/50 focus:ring-1 focus:ring-neon/20 transition-all appearance-none" style="background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2310B981' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5'/%3E%3C/svg%3E\"); background-repeat: no-repeat; background-position: right 12px center; background-size: 16px;">
+                                <option value="" disabled selected>Selectionnez...</option>
+                                <option value="fiscal-particulier">Fiscalite des particuliers</option>
+                                <option value="fiscal-entreprise">Fiscalite des entreprises</option>
+                                <option value="controle-fiscal">Controle fiscal</option>
+                                <option value="fiscal-international">Fiscalite internationale</option>
+                                <option value="droit-affaires">Droit des affaires</option>
+                                <option value="autre">Autre demande</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-7">
+                            <label class="block font-body text-xs text-white/40 mb-2 tracking-wide uppercase">Message</label>
+                            <textarea name="message" rows="4" required placeholder="Decrivez brievement votre situation..." class="w-full bg-void border border-white/10 rounded-lg px-4 py-3 font-body text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-neon/50 focus:ring-1 focus:ring-neon/20 transition-all resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" class="cta-primary w-full font-display font-semibold text-base py-3.5 rounded-lg flex items-center justify-center gap-2">
+                            <span>Envoyer ma demande</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                            </svg>
+                        </button>
+
+                        <!-- Success message -->
+                        <div id="formSuccess" class="hidden mt-5 text-center">
+                            <div class="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-neon/10 border border-neon/20">
+                                <svg class="w-5 h-5 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span class="font-body text-sm text-neon">Votre demande a ete envoyee. Nous vous recontacterons rapidement.</span>
+                            </div>
+                        </div>
+
+                        <p class="font-body text-[11px] text-white/20 mt-5 text-center leading-relaxed">
+                            En soumettant ce formulaire, vous acceptez que vos donnees soient traitees conformement au RGPD dans le cadre de votre demande de contact.
+                        </p>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- FOOTER -->
+    <!-- ============================== -->
+    <footer class="border-t border-white/5 py-12 sm:py-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+
+            <!-- Top row -->
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-10">
+                <div>
+                    <a href="#" class="font-display font-bold text-xl tracking-tight">
+                        <span class="text-neon">M</span>iller <span class="text-white/40 font-light">Avocat</span>
+                    </a>
+                    <p class="font-body text-sm text-white/30 mt-2 max-w-xs">Avocat fiscaliste a Nice — Conseil, contentieux fiscal et droit des affaires.</p>
+                </div>
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8">
+                    <a href="tel:0628564813" class="font-display text-sm text-white/50 hover:text-neon transition-colors">06 28 56 48 13</a>
+                    <a href="mailto:contact@milleravocat.fr" class="font-display text-sm text-white/50 hover:text-neon transition-colors">contact@milleravocat.fr</a>
+                    <a href="#contact" class="cta-primary font-display font-medium text-sm px-5 py-2 rounded-lg">Rendez-vous</a>
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="h-px bg-white/5 mb-8"></div>
+
+            <!-- Bottom row -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="font-body text-xs text-white/20 text-center sm:text-left">
+                    Me Alexandre Miller — Barreau de Nice — 34 bd Gambetta, 06000 Nice
+                </div>
+                <div class="font-body text-xs text-white/15 text-center sm:text-right">
+                    Conception : <a href="https://aegis.agency" target="_blank" class="text-neon/40 hover:text-neon/70 transition-colors">AEGIS Agency</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================== -->
+    <!-- JAVASCRIPT -->
+    <!-- ============================== -->
+    <script>
+        // === SCROLL PROGRESS BAR ===
+        const progressBar = document.getElementById('progressBar');
+        function updateProgress() {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            progressBar.style.width = progress + '%';
+        }
+
+        // === NAVBAR SCROLL EFFECT ===
+        const navbar = document.querySelector('.navbar');
+        function updateNavbar() {
+            if (window.scrollY > 80) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+
+        // === MOBILE MENU ===
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const bar1 = document.getElementById('bar1');
+        const bar2 = document.getElementById('bar2');
+        const bar3 = document.getElementById('bar3');
+        let menuOpen = false;
+
+        menuToggle.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            mobileMenu.classList.toggle('open');
+            if (menuOpen) {
+                bar1.style.transform = 'rotate(45deg) translate(4px, 4px)';
+                bar2.style.opacity = '0';
+                bar3.style.transform = 'rotate(-45deg) translate(3px, -3px)';
+                bar3.style.width = '1.5rem';
+                document.body.style.overflow = 'hidden';
+            } else {
+                bar1.style.transform = '';
+                bar2.style.opacity = '1';
+                bar3.style.transform = '';
+                bar3.style.width = '1rem';
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mob-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (menuOpen) {
+                    menuOpen = false;
+                    mobileMenu.classList.remove('open');
+                    bar1.style.transform = '';
+                    bar2.style.opacity = '1';
+                    bar3.style.transform = '';
+                    bar3.style.width = '1rem';
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // === REVEAL ON SCROLL (IntersectionObserver) ===
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // === FAQ ACCORDION ===
+        function toggleFaq(item) {
+            const allItems = document.querySelectorAll('.faq-item');
+            const isOpen = item.classList.contains('open');
+
+            // Close all
+            allItems.forEach(i => i.classList.remove('open'));
+
+            // Open clicked if not already open
+            if (!isOpen) {
+                item.classList.add('open');
+            }
+        }
+
+        // === FORM HANDLER ===
+        function handleSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('contactForm');
+            const success = document.getElementById('formSuccess');
+            const btn = form.querySelector('button[type="submit"]');
+
+            btn.innerHTML = '<span class="inline-block w-5 h-5 border-2 border-void/30 border-t-void rounded-full animate-spin"></span>';
+
+            setTimeout(() => {
+                form.reset();
+                success.classList.remove('hidden');
+                btn.innerHTML = '<span>Envoyer ma demande</span><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>';
+
+                setTimeout(() => {
+                    success.classList.add('hidden');
+                }, 5000);
+            }, 1500);
+        }
+
+        // === SMOOTH SCROLL ===
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    const offset = navbar.offsetHeight + 20;
+                    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // === PARALLAX ORBS ===
+        const orbs = document.querySelectorAll('.ambient-orb');
+        function updateParallax() {
+            const scrollY = window.scrollY;
+            orbs.forEach((orb, i) => {
+                const speed = 0.02 + (i * 0.01);
+                const y = scrollY * speed;
+                orb.style.transform = `translateY(${y}px)`;
+            });
+        }
+
+        // === SCROLL EVENT LISTENERS ===
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    updateProgress();
+                    updateNavbar();
+                    updateParallax();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Init
+        updateProgress();
+        updateNavbar();
+    </script>
+
+</body>
+</html>
